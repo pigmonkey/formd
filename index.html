@@ -15,8 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <img src="images/formd-logo.png" width="300" height="" />
-        <em>A Markdown formatting tool</em>
+        <img src="images/formd-logo.png" width="325" height="" />
+        <em>A Markdown formatter</em>
         <p class="view"><a href="https://github.com/drbunsen/formd">View the Project on GitHub <small>drbunsen/formd</small></a></p>
         <ul>
           <li><a href="https://github.com/drbunsen/formd/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -30,7 +30,7 @@
 
 <p><code>formd</code> is a tool for (for)matting (M)ark(d)own that allows rapid conversion between the <a href="http://daringfireball.net/projects/markdown/syntax#link">two styles</a> of Markdown links and images—<em>inline</em> and <em>referenced</em>. </p>
 
-<h2>Why is <code>formd</code> useful?</h2>
+<h2>Why is formd useful?</h2>
 
 <p>Inline Markdown is difficult to read, but useful for writing and editing because the linked text and URLs are adjacent to the words you are writing. For example:</p>
 
@@ -44,6 +44,8 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </code></pre>
 
 <p><code>formd</code> provides the best of both worlds by allowing users to quickly toggle Markdown formats between inline while writing and referenced while reading. <code>formd</code> reads and writes to <a href="http://en.wikipedia.org/wiki/Standard_streams">standard streams</a>, so it can be adapted to a wide-range of user workflows. See <a href="http://www.drbunsen.org/formd-a-markdown-formatting-tool.html">this blog post</a> for further details and workflow examples for using <code>formd</code> on the command line, with <a href="http://www.vim.org/">Vim</a>, or with <a href="http://smilesoftware.com/TextExpander/">TextExpander</a>.</p>
+
+<iframe src="http://player.vimeo.com/video/37705679" width="400" height="250" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 <h2>Dependencies:</h2>
 
@@ -61,7 +63,7 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 
 <h2>Usage</h2>
 
-<p>There are two command line options for <code>formd</code>:  </p>
+<p>There are three command line options for <code>formd</code>:  </p>
 
 <p>To generate referenced Markdown use the <code>-r</code> flag:  </p>
 
@@ -79,6 +81,13 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </div>
 
 
+<p>To flip Markdown style to the opposite format call <code>formd</code> witout any arguments:  </p>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>formd 
+</pre>
+</div>
+
 <p><code>formd</code> is designed to work with a wide variety of workflows. Here are a few examples:  </p>
 
 <h4>Use from the command line:</h4>
@@ -87,7 +96,6 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 <pre><span class="nv">$ </span>cat ugly_markdown_file.md | formd -r &gt; reference_formatted_file.md
 </pre>
 </div>
-
 
 <h4>Use within Vim:</h4>
 

@@ -83,7 +83,7 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </div>
 
 
-<p>To flip Markdown style to the opposite format call <code>formd</code> witout any arguments:  </p>
+<p>To flip Markdown style to the opposite format call <code>formd</code> with the <code>-f</code> flag:  </p>
 
 <div class="highlight">
 <pre><span class="nv">$ </span>formd -f
@@ -99,22 +99,17 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </pre>
 </div>
 
-<h4>Use within Vim:</h4>
+<h4><a href="#vim">Use with Vim</a></h4>
 
+<p>The simplest option is to execute <code>formd</code> on a Vim buffer</p>
 <div class="highlight">
 <pre><span class="p">:</span>%<span class="p">!</span> formd <span class="p">-</span><span class="k">r</span>
 </pre>
 </div>
 
+<p>A better option is to append the following function and mappings to your <code>.vimrc</code>:</p>
 
-<p>or add mappings to your <code>.vimrc</code>:</p>
-
-<div class="highlight">
-<pre>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span>fr :%<span class="p">!</span> <span class="p">~</span><span class="sr">/bin/</span>formd <span class="p">-</span><span class="k">r</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
-nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">fi</span> :%<span class="p">!</span> <span class="p">~</span><span class="sr">/bin/</span>formd <span class="p">-</span><span class="k">i</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
-</pre>
-</div>
-
+<script src="https://gist.github.com/drbunsen/5064803.js"></script>
 
 <h4>Use as a stand alone shell script on with <a href="http://smilesoftware.com/TextExpander/">TextExpander</a> on OS X:</h4>
 

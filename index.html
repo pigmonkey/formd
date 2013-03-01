@@ -99,7 +99,8 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </pre>
 </div>
 
-<h4>Use within Vim:</h4>
+<a name="http://drbunsen.github.com/formd/#vim"></a> 
+<h4><a href="#vim">Use with Vim</a></h4>
 
 <p><code>formd</code> can be integrated with Vim on several levels. The easiest option is to call it
 directly from within a Vim buffer. For example:</p>
@@ -109,35 +110,16 @@ directly from within a Vim buffer. For example:</p>
 </pre>
 </div>
 
-A more useful option is to add the following function and mappings to your <code>.vimrc</code> file:
+<p>A better option is to append the following function and mappings to your <code>.vimrc</code>. As an example, running <code>&lt;leader&gt;fi</code>
+will now call <code>formd</code> and switch all markdown in the current buffer to inline markdown then return the cursor back to the original position
+that it was in when formd was executed.</p>
 
-{% highlight VimL %}
-" a function to execute formd and return the cursor back
-" to it's original position within the buffer
-function! Formd(option)
-    :let save_view = winsaveview()
-    :let flag = a:option
-    :if flag == "-r"
-        :%! ~/bin/formd/formd -r
-    :elseif flag == "-i"
-        :%! ~/bin/formd/formd -i
-    :else
-        :%! ~/bin/formd/formd -f
-    :endif
-    :call winrestview(save_view)
-endfunction
+<script src="https://gist.github.com/drbunsen/5064803.js"></script>
 
-" formd shortcuts
-nmap <leader>fr :call Formd("-r")<CR>
-nmap <leader>fi :call Formd("-i")<CR>
-nmap <leader>ff :call Formd("-f")<CR>
-{% endhighlight %}
 
 <h4>Use as a stand alone shell script on with <a href="http://smilesoftware.com/TextExpander/index.html">TextExpander</a>TextExpander on OS X:</h4>
 
-{% highlight bash %}
-pbpaste | ~/bin/formd -r
-{% endhighlight %}
+<code>pbpaste | ~/bin/formd -r</code>
 
 <p>For more information on <code>formd</code> see <a href="http://www.drbunsen.org/formd-a-markdown-formatting-tool.html">this blog post</a> for additional usage examples and a video demonstration.</p>
 

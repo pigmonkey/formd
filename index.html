@@ -83,7 +83,7 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 </div>
 
 
-<p>To flip Markdown style to the opposite format call <code>formd</code> witout any arguments:  </p>
+<p>To flip Markdown style to the opposite format call <code>formd</code> with the <code>-f</code> flag:  </p>
 
 <div class="highlight">
 <pre><span class="nv">$ </span>formd -f
@@ -101,29 +101,43 @@ the lazy [dog](http://en.wikipedia.org/wiki/Dog).
 
 <h4>Use within Vim:</h4>
 
+<p><code>formd</code> can be integrated with Vim on several levels. The easiest option is to call it
+directly from within a Vim buffer. For example:</p>
+
 <div class="highlight">
 <pre><span class="p">:</span>%<span class="p">!</span> formd <span class="p">-</span><span class="k">r</span>
 </pre>
 </div>
 
+A more useful option is to add the following function and mappings to your <code>.vimrc</code> file:
 
-<p>or add mappings to your <code>.vimrc</code>:</p>
+{% highlight VimL %}
+" a function to execute formd and return the cursor back
+" to it's original position within the buffer
+function! Formd(option)
+    :let save_view = winsaveview()
+    :let flag = a:option
+    :if flag == "-r"
+        :%! ~/bin/formd/formd -r
+    :elseif flag == "-i"
+        :%! ~/bin/formd/formd -i
+    :else
+        :%! ~/bin/formd/formd -f
+    :endif
+    :call winrestview(save_view)
+endfunction
 
-<div class="highlight">
-<pre>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span>fr :%<span class="p">!</span> <span class="p">~</span><span class="sr">/bin/</span>formd <span class="p">-</span><span class="k">r</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
-nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">fi</span> :%<span class="p">!</span> <span class="p">~</span><span class="sr">/bin/</span>formd <span class="p">-</span><span class="k">i</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
-</pre>
-</div>
+" formd shortcuts
+nmap <leader>fr :call Formd("-r")<CR>
+nmap <leader>fi :call Formd("-i")<CR>
+nmap <leader>ff :call Formd("-f")<CR>
+{% endhighlight %}
 
+<h4>Use as a stand alone shell script on with <a href="http://smilesoftware.com/TextExpander/index.html">TextExpander</a>TextExpander on OS X:</h4>
 
-<h4>Use as a stand alone shell script on with <a href="http://smilesoftware.com/TextExpander/">TextExpander</a> on OS X:</h4>
-
-<div class="highlight">
-<pre><span class="c">#!/bin/bash</span>
+{% highlight bash %}
 pbpaste | ~/bin/formd -r
-</pre>
-</div>
-
+{% endhighlight %}
 
 <p>For more information on <code>formd</code> see <a href="http://www.drbunsen.org/formd-a-markdown-formatting-tool.html">this blog post</a> for additional usage examples and a video demonstration.</p>
 
